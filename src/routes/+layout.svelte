@@ -12,7 +12,7 @@
     <ul>
     {#each routes as route}
         <li>
-            <a href={route.path} aria-current={route.path === $page.route.id}>{route.name}</a>
+            <a href={route.path} aria-current={route.path === $page.url.pathname}>{route.name}</a>
         </li>
     {/each}
     </ul>
@@ -21,6 +21,7 @@
 <slot/>
 
 <footer>
+    <br/>
     <small>Brought to you by SIPB.</small>
 </footer>
 
