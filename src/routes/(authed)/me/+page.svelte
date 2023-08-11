@@ -1,32 +1,37 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
-    import { encodeTicket, makeHeaders } from '$lib/webathena';
-    import { PUBLIC_MOIRA_API } from '$env/static/public';
     import Loading from '$lib/Loading.svelte';
-	import { derived, type Writable } from 'svelte/store';
+    import { makeQuery } from '$lib/moira';
+	import type { Readable } from 'svelte/store';
 
-    const webathena = getContext<Writable<any>>('webathena');
-    const headers = derived(webathena, makeHeaders);
+    const ticket = getContext<Readable<string>>('ticket');
 
-    async function getUserInfo() {
-        const response = await fetch(`${PUBLIC_MOIRA_API}/users/me/`, {
-            headers: $headers,
-        });
-        const json = await response.json();
-        if (response.status !== 200) {
-            throw json;
+    type UserInfo = {
+        "full_name": string,
+        "names": {
+            "first": string,
+            "middle": string,
+            "last": string,
         }
-        return json;
+        "kerb": string,
+        "mit_id": number,
+        "class_year": string,
+    };
+    
+    async function getUserInfo(): Promise<UserInfo> {
+        return await makeQuery({
+            method: 'GET',
+            path: '/users/me/',
+            ticket: $ticket,
+        });
     }
-
-    const promise = getUserInfo();
 
 </script>
 
 <h1>My info</h1>
 
 
-{#await promise}
+{#await getUserInfo()}
 <Loading/>
 {:then userInfo}
     <ul>

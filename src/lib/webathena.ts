@@ -37,9 +37,3 @@ export function loginWebathena(): Promise<any> {
 export function encodeTicket(webathena: any) {
     return btoa(JSON.stringify(webathena));
 }
-
-export function makeHeaders(webathena: any) {
-    return {
-        'Authorization': `webathena ${encodeTicket(webathena)}`,
-    }
-}

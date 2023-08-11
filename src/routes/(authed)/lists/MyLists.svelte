@@ -4,40 +4,32 @@
 
 <script lang="ts">
 	import { getContext } from 'svelte';
-    import { makeHeaders } from '$lib/webathena';
-    import { PUBLIC_MOIRA_API } from '$env/static/public';
     import Loading from '$lib/Loading.svelte';
-	import { derived, type Writable } from 'svelte/store';
+    import { makeQuery } from '$lib/moira';
+	import type { Readable } from 'svelte/store';
 
-    const webathena = getContext<Writable<any>>('webathena');
-    const headers = derived(webathena, makeHeaders);
+    const ticket = getContext<Readable<string>>('ticket');
 
-    async function getLists() {
-        const response = await fetch(`${PUBLIC_MOIRA_API}/users/me/lists`, {
-            headers: $headers,
+    async function getLists(): Promise<string[]> {
+        const lists: string[] = await makeQuery({
+            method: 'GET',
+            path: '/users/me/lists',
+            ticket: $ticket,
         });
-        const json = await response.json();
-        if (response.status !== 200) {
-            throw json;
-        }
-        // sort :)
-        json.sort();
-        return json;
+        lists.sort();
+        return lists;
     }
-
-    const promise = getLists();
-
 </script>
 
 <h1>Lists I am on</h1>
 
-{#await promise}
+{#await getLists()}
 <Loading/>
 {:then lists}
     <ul>
         {#each lists as list}
             <li>
-                <a href={`/lists/${list.name}`}>
+                <a href={`/lists/${list}`}>
                     {list}
                 </a>
             </li>

@@ -1,11 +1,15 @@
 <script lang="ts">
     import { loginWebathena } from '$lib/webathena';
 	import { setContext } from 'svelte';
-    import { writable } from 'svelte/store';
+    import { writable, derived } from 'svelte/store';
+    import { encodeTicket } from '$lib/webathena';
 
     // TODO: local storage?
     const webathena = writable<any>(undefined);
     setContext('webathena', webathena);
+
+    const ticket = derived(webathena, encodeTicket);
+    setContext('ticket', ticket);
 
     $: console.log($webathena);
 
