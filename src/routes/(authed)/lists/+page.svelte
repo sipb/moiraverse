@@ -1,11 +1,5 @@
 <script lang="ts">
-	import { makeHeaders } from '$lib/webathena';
-	import { getContext } from 'svelte';
-	import { derived, type Writable } from 'svelte/store';
 	import MyLists from './MyLists.svelte';
-
-	const webathena = getContext<Writable<any>>('webathena');
-	const headers = derived(webathena, makeHeaders);
 </script>
 
 <div class="row">
