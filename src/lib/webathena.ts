@@ -10,17 +10,9 @@ const principal = ['moira', 'moira7.mit.edu'];
  * Returns a promise that resolves with the result,
  * or raise the error.
  */
-export function loginWebathena() {
-
-    // what did I do, selecting the JavaScript
-    // with type checking?
-    
-    // TODO: try creating the 3 type of projects
-    // and compare the differences to be able to
-    // switch between the 3
-
-    /** @type Function */ let resolve;
-    /** @type Function */ let reject; 
+export function loginWebathena(): Promise<any> {
+    let resolve: Function;
+    let reject: Function; 
     const promise = new Promise((resolver, rejecter) => {
         resolve = resolver;
         reject = rejecter;
@@ -29,7 +21,7 @@ export function loginWebathena() {
         url: `${webathena_host}/#!request_ticket_v1`,
         relay_url: `${webathena_host}/relay.html`,
         params: { realm, principal },
-    }, function (/** @type any */ err, /** @type any */ r) {
+    }, function (err: any, r: any) {
         if (err) {
             reject(err);
         } else if (r.status !== 'OK') {
@@ -42,11 +34,11 @@ export function loginWebathena() {
 }
 
 
-export function encodeTicket(/** @type any */ webathena) {
+export function encodeTicket(webathena: any) {
     return btoa(JSON.stringify(webathena));
 }
 
-export function makeHeaders(/** @type any */ webathena) {
+export function makeHeaders(webathena: any) {
     return {
         'Authorization': `webathena ${encodeTicket(webathena)}`,
     }

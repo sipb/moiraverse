@@ -1,10 +1,10 @@
-<script>
+<script lang="ts">
     import { loginWebathena } from '$lib/webathena';
 	import { setContext } from 'svelte';
     import { writable } from 'svelte/store';
 
     // TODO: local storage?
-    const webathena = writable(undefined);
+    const webathena = writable<any>(undefined);
     setContext('webathena', webathena);
 
     $: console.log($webathena);

@@ -2,14 +2,14 @@
 <!-- because I am lazy but TODO do something better -->
 <!-- DRY tm -->
 
-<script>
+<script lang="ts">
 	import { getContext } from 'svelte';
     import { makeHeaders } from '$lib/webathena';
     import { PUBLIC_MOIRA_API } from '$env/static/public';
     import Loading from '$lib/Loading.svelte';
-	import { derived } from 'svelte/store';
+	import { derived, type Writable } from 'svelte/store';
 
-    const webathena = getContext('webathena');
+    const webathena = getContext<Writable<any>>('webathena');
     const headers = derived(webathena, makeHeaders);
 
     async function getLists() {
