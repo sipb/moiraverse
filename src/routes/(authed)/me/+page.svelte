@@ -3,6 +3,7 @@
     import Loading from '$lib/Loading.svelte';
     import { getUserInfo } from '$lib/moira';
 	import type { Readable } from 'svelte/store';
+	import Error from '$lib/Error.svelte';
 
     const ticket = getContext<Readable<string>>('ticket');
 </script>
@@ -18,7 +19,6 @@
         <li><strong>Class year: </strong>{userInfo.class_year}</li>
         <li><strong>MIT ID: </strong>{userInfo.mit_id}</li>
     </ul>
-{:catch e}
-    <h2>An error occured:</h2>
-    <p>{JSON.stringify(e)}</p>
+{:catch error}
+    <Error {error} />
 {/await}

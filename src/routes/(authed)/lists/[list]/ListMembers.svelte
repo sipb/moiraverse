@@ -3,6 +3,7 @@
     import Loading from '$lib/Loading.svelte';
     import { getListMembers } from '$lib/moira';
 	import type { Readable } from 'svelte/store';
+	import Error from '$lib/Error.svelte';
     
     export let listName: string;
 
@@ -47,7 +48,6 @@
             {/each}
         </ul>
     {/if}
-{:catch e}
-    <h3>An error occurred</h3>
-    {JSON.stringify(e)}
+{:catch error}
+    <Error {error}/>
 {/await}

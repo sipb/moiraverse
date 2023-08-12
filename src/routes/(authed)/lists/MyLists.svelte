@@ -3,6 +3,7 @@
     import Loading from '$lib/Loading.svelte';
     import { getLists } from '$lib/moira';
 	import type { Readable } from 'svelte/store';
+	import Error from '$lib/Error.svelte';
 
     const ticket = getContext<Readable<string>>('ticket');
 </script>
@@ -21,7 +22,6 @@
             </li>
         {/each}
     </ul>
-{:catch e}
-    <h2>An error occured:</h2>
-    <p>{JSON.stringify(e)}</p>
+{:catch error}
+    <Error {error}/>
 {/await}

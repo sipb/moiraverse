@@ -3,6 +3,7 @@
     import Loading from '$lib/Loading.svelte';
     import { getListLists } from '$lib/moira';
 	import type { Readable } from 'svelte/store';
+	import Error from '$lib/Error.svelte';
 
     export let listName: string;
 
@@ -23,11 +24,6 @@
             </li>
         {/each}
     </ul>
-{:catch e}
-    {#if e.name === 'MR_NO_MATCH'}
-        <p>{listName} is not on any lists</p>
-    {:else}
-        <h3>An error occured:</h3>
-        <p>{JSON.stringify(e)}</p>
-    {/if}
+{:catch error}
+    <Error {error} noResultsError={`${listName} is not on any lists.`}/>
 {/await}
