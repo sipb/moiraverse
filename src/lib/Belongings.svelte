@@ -36,7 +36,7 @@
 {/if}
 
 {#if hasError}
-	<Error {error} noResultsError={`${self} cannot administer anything`} />
+	<Error {error} noResultsError={`${self} cannot administer anything.`} />
 {/if}
 
 {#if loading}
