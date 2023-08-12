@@ -17,9 +17,10 @@
 		getUserBelongings($ticket).then((val) => {
 			belongings = val;
 			loading = false;
+			hasError = false;
 		}, (e) => {
             console.log('An error occurred', e);
-            hasError = true;
+			hasError = true;
 			error = e;
             loading = false;
         });
