@@ -10,6 +10,8 @@
     export let error: MoiraException;
 	export let belongings: Belonging[] = [];
 
+	$: console.log(belongings);
+
 	let lists: string[] = [];
 	$: lists = belongings.filter((b) => b.type === 'list').map((b) => b.name).sort();
 
@@ -27,9 +29,12 @@
     // Calculate relative headings
     $: h1 = `h${headingLevel}`;
     $: h2 = `h${headingLevel + 1}`;
+
+	$: onlyOwnsLists = belongings.every((b) => b.type === 'list');
+	$: console.log(onlyOwnsLists);
 </script>
 
-{#if lists.length === belongings.length }
+{#if onlyOwnsLists}
     <svelte:element this={h1}>Lists {self} can administer</svelte:element>
 {:else}
     <svelte:element this={h1}>What can {self} administer?</svelte:element>
@@ -61,7 +66,7 @@
 			{/each}
 	{/if}
 
-	{#if lists.length !== belongings.length }
+	{#if !onlyOwnsLists && lists.length > 0}
 		<svelte:element this={h2}>Lists</svelte:element>
 	{/if}
 
