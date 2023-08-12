@@ -46,7 +46,7 @@
         <li><strong>Active: </strong>{humanBool(info.active)}</li>
         <li><strong>Is mailing list: </strong>{humanBool(info.is_mailing_list)}</li>
         <li><strong>Anyone can add themselves: </strong>{humanBool(info.public)}</li>
-        <li><strong>Only admins can see members: </strong>{humanBool(!info.hidden)}</li>
+        <li><strong>Only admins can see members: </strong>{humanBool(info.hidden)}</li>
         <li><strong>Sync membership to AFS: </strong>{humanBool(info.is_afs_group)}</li>
         <li><strong>Sync membership to DNS records: </strong>{humanBool(info.is_nfs_group)}</li>
         <li><strong>Controls tap access: </strong>{humanBool(info.is_physical_access)}</li>
