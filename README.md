@@ -1,28 +1,29 @@
-# create-svelte
+# MoiraVerse
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+This is a Moira client written in Svelte. It is very much work-in-progress, and for instance, there is no CSS or design, and lists can't be created or modified yet.
 
-## Creating a project
+## Backend
 
-If you're seeing this, you've probably already done this step. Congrats!
+The backend is https://github.com/gabrc52/moira-rest-api.
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+There is currently a backend running on `uplink.mit.edu`, but it will move to `moiraverse.xvm.mit.edu`.
 
-# create a new project in my-app
-npm create svelte@latest my-app
+In order to run this project, create a file called `.env` with the following contents:
+
 ```
+PUBLIC_MOIRA_API="https://uplink.mit.edu"
+```
+
+Or use `http://localhost:5000` if you are running or developing the REST API locally.
+
+(Yes, SvelteKit is capable of doing backends, but I wrote it before this project, and there are no Moira C bindings for JavaScript)
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Once you've cloned the repo and installed dependencies with `npm install`, start a development server:
 
 ```bash
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
 ## Building
