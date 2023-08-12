@@ -24,6 +24,6 @@
         {/each}
     </ul>
 {:catch e}
-    <h2>An error occured:</h2>
+    <h3>An error occured:</h3>
     <p>{JSON.stringify(e)}</p>
 {/await}
