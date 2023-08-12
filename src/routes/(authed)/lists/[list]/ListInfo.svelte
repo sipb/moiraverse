@@ -34,11 +34,14 @@
         </li>
         <!-- the deeper you go the more it would make sense to have with blocks like Hugo -->
         {#if info.membership_administrator}
-            {#if info.membership_administrator.type == 'list'}
-                <a href="/lists/{info.membership_administrator.name}">{info.owner.name}</a>
-            {:else}
-                {info.owner.name}
-            {/if}
+            <li>
+                <strong>Membership administrator: </strong>
+                {#if info.membership_administrator.type == 'list'}
+                    <a href="/lists/{info.membership_administrator.name}">{info.membership_administrator.name}</a>
+                {:else}
+                    {info.membership_administrator.name}
+                {/if}
+            </li>
         {/if}
         <li><strong>Active: </strong>{humanBool(info.active)}</li>
         <li><strong>Is mailing list: </strong>{humanBool(info.is_mailing_list)}</li>
@@ -47,6 +50,7 @@
         <li><strong>Sync membership to AFS: </strong>{humanBool(info.is_afs_group)}</li>
         <li><strong>Sync membership to DNS records: </strong>{humanBool(info.is_nfs_group)}</li>
         <li><strong>Controls tap access: </strong>{humanBool(info.is_physical_access)}</li>
+        <li>Last modified {info.last_modified.time} by {info.last_modified.user} using {info.last_modified.tool}</li>
     </ul>
     {/if}
 {/await}
