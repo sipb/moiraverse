@@ -1,37 +1,15 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
     import Loading from '$lib/Loading.svelte';
-    import { makeQuery } from '$lib/moira';
+    import { getUserInfo } from '$lib/moira';
 	import type { Readable } from 'svelte/store';
 
     const ticket = getContext<Readable<string>>('ticket');
-
-    type UserInfo = {
-        "full_name": string,
-        "names": {
-            "first": string,
-            "middle": string,
-            "last": string,
-        }
-        "kerb": string,
-        "mit_id": number,
-        "class_year": string,
-    };
-    
-    async function getUserInfo(): Promise<UserInfo> {
-        return await makeQuery({
-            method: 'GET',
-            path: '/users/me/',
-            ticket: $ticket,
-        });
-    }
-
 </script>
 
 <h1>My info</h1>
 
-
-{#await getUserInfo()}
+{#await getUserInfo($ticket)}
 <Loading/>
 {:then userInfo}
     <ul>

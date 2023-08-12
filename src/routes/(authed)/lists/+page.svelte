@@ -1,5 +1,6 @@
 <script lang="ts">
-	import MyLists from './MyLists.svelte';
+	import MyBelongings from './MyBelongings.svelte';
+import MyLists from './MyLists.svelte';
 </script>
 
 <div class="row">
@@ -7,7 +8,7 @@
 		<MyLists/>
 	</div>
 	<div class="column">
-		<h1>Lists I can administer</h1>
+		<MyBelongings/>
 	</div>
 </div>
 

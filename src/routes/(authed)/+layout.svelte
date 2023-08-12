@@ -3,9 +3,11 @@
 	import { setContext } from 'svelte';
     import { writable, derived } from 'svelte/store';
     import { encodeTicket } from '$lib/webathena';
+    import { persisted } from 'svelte-local-storage-store';
 
-    // TODO: local storage?
-    const webathena = writable<any>(undefined);
+    // TODO: sensible behavior when ticket expires
+
+    const webathena = persisted<any>('webathena', undefined);
     setContext('webathena', webathena);
 
     const ticket = derived(webathena, encodeTicket);
