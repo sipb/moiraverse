@@ -7,13 +7,6 @@
 
     // TODO: sensible behavior when ticket expires
 
-    // TODO: remove this if statement
-    if (window.localStorage) {
-        if (window.localStorage.getItem('webathena') === 'undefined') {
-            window.localStorage.setItem('webathena', 'null');
-        }
-    }
-
     const webathena = persisted<any>('webathena', null);
     setContext('webathena', webathena);
 
