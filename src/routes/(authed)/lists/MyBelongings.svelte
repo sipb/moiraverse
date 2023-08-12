@@ -33,8 +33,16 @@
 	$: otherBelongings = belongings.filter((b) => b.type !== 'list');
 </script>
 
+<!-- TODO:
+use await block instead
+and 
+make functions that accept the input and transform it
+(instead of $: things)
+-->
+
 <h1>Lists I can administer</h1>
 {#if hasError}
+	<h2>An error occurred</h2>
     <p>{JSON.stringify(error)}</p>
 {/if}
 {#if loading}

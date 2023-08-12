@@ -1,5 +1,5 @@
 import { PUBLIC_MOIRA_API } from '$env/static/public';
-import type { HttpMethod, UserInfo, Belonging } from '$lib/types';
+import type { HttpMethod, UserInfo, Belonging, ListInfo, ListMembers } from '$lib/types';
 
 // TODO: allow other input 
 // GET parameters
@@ -46,6 +46,30 @@ export async function getUserInfo(ticket: string): Promise<UserInfo> {
     return await makeQuery({
         method: 'GET',
         path: '/users/me/',
+        ticket,
+    });
+}
+
+export async function getListInfo(ticket: string, list: string): Promise<ListInfo> {
+    return await makeQuery({
+        method: 'GET',
+        path: `/lists/${list}/`,
+        ticket,
+    });
+}
+
+export async function getListMembers(ticket: string, list: string): Promise<ListMembers> {
+    return await makeQuery({
+        method: 'GET',
+        path: `/lists/${list}/members/`,
+        ticket,
+    });
+}
+
+export async function getListLists(ticket: string, list: string): Promise<string[]> {
+    return await makeQuery({
+        method: 'GET',
+        path: `/lists/${list}/lists`,
         ticket,
     });
 }
