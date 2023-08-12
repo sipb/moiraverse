@@ -17,7 +17,7 @@ export async function makeQuery({ method, path, ticket }: QueryOptions): Promise
     console.log(response);
     const json = await response.json();
     if (response.status !== 200) {
-        // TODO: make an object-oriented exception
+        // TODO check is instance of MoiraException?
         throw json;
     }
     return json;
@@ -33,10 +33,19 @@ export async function getLists(ticket: string): Promise<string[]> {
     return lists;
 }
 
-export async function getBelongings(ticket: string): Promise<any> {
+export async function getUserBelongings(ticket: string): Promise<Belonging[]> {
     const belongings: Belonging[] = await makeQuery({
         method: 'GET',
         path: '/users/me/belongings',
+        ticket,
+    });
+    return belongings;
+}
+
+export async function getListBelongings(ticket: string, list: string): Promise<Belonging[]> {
+    const belongings: Belonging[] = await makeQuery({
+        method: 'GET',
+        path: `/lists/${list}/belongings`,
         ticket,
     });
     return belongings;

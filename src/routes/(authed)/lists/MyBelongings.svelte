@@ -1,9 +1,7 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
-	import Loading from '$lib/Loading.svelte';
-	import Error from '$lib/Error.svelte';
 	import Belongings from '$lib/Belongings.svelte';
-	import { getBelongings } from '$lib/moira';
+	import { getUserBelongings } from '$lib/moira';
 	import type { Readable } from 'svelte/store';
 	import type { Belonging, MoiraException } from '$lib/types';
 
@@ -16,9 +14,8 @@
 
 	$: {
 		loading = true;
-		getBelongings($ticket).then((val) => {
+		getUserBelongings($ticket).then((val) => {
 			belongings = val;
-			// TODO: handle error
 			loading = false;
 		}, (e) => {
             console.log('An error occurred', e);
@@ -27,6 +24,9 @@
             loading = false;
         });
 	}
+
+	// TODO: it might be better to pass the exception as a prop
+	// instead of this whole list of things
 </script>
 
 <Belongings
