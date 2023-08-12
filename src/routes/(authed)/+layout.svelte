@@ -7,7 +7,14 @@
 
     // TODO: sensible behavior when ticket expires
 
-    const webathena = persisted<any>('webathena', undefined);
+    // TODO: remove this if statement
+    if (window.localStorage) {
+        if (window.localStorage.getItem('webathena') === 'undefined') {
+            window.localStorage.setItem('webathena', 'null');
+        }
+    }
+
+    const webathena = persisted<any>('webathena', null);
     setContext('webathena', webathena);
 
     const ticket = derived(webathena, encodeTicket);
@@ -20,11 +27,11 @@
     }
 </script>
 
-{#if $webathena === undefined}
+{#if $webathena === null}
     <h1>You are not logged in</h1>
     <button id="login" on:click={login}>Login with Webathena</button>
 {:else}
-    <button id="logout" on:click={() => $webathena = undefined}>Logout</button>
+    <button id="logout" on:click={() => $webathena = null}>Logout</button>
     <br/>
     <slot/>
 {/if}
