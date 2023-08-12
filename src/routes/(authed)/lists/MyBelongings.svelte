@@ -14,6 +14,7 @@
 
 	$: {
 		loading = true;
+		belongings = [];
 		getUserBelongings($ticket).then((val) => {
 			belongings = val;
 			loading = false;
