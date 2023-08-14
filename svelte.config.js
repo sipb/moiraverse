@@ -11,7 +11,11 @@ const config = {
 		// https://kit.svelte.dev/docs/single-page-apps#prerendering-individual-pages
 		adapter: adapter({
 			fallback: 'index.html'
-		})
+		}),
+		// Change relative path to 
+		paths: {
+			base: '/moiraverse'
+		},
 	}
 };
 
