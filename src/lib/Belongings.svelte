@@ -79,8 +79,10 @@
 		</ul>
 	{/if}
 
-	{#if !onlyOwnsLists && lists.length > 0}
-		<svelte:element this={h2}>Lists</svelte:element>
+	{#if lists.length > 0}
+		{#if !onlyOwnsLists}
+			<svelte:element this={h2}>Lists</svelte:element>
+		{/if}
 		<div class="list-group">
 			{#each lists as list}
 				<a href={`/lists/${list}`} class="list-group-item list-group-item-action">
