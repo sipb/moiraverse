@@ -32,8 +32,6 @@
 	} else {
 		document.documentElement.setAttribute('data-bs-theme', theme);
 	}
-
-	$: searchtext = document.getElementById('searchlist')?.value;
 </script>
 
 <header>
@@ -81,7 +79,9 @@
 						id="button-searchlist"
 						on:click={() =>
 							document.getElementById('searchlist')?.value.trim().length > 0
-								? window.location.assign(`/lists/${searchtext}`)
+								? window.location.assign(
+										`/lists/${document.getElementById('searchlist')?.value.trim()}`
+								  )
 								: null}>Go</button
 					>
 				</div>
