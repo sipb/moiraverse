@@ -22,9 +22,6 @@
 
 {#if $webathena === null}
     <h1>You are not logged in</h1>
-    <button id="login" on:click={login}>Login with Webathena</button>
 {:else}
-    <button id="logout" on:click={() => $webathena = null}>Logout</button>
-    <br/>
     <slot/>
 {/if}

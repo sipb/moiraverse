@@ -13,15 +13,13 @@
 {#await getLists($ticket)}
 <Loading/>
 {:then lists}
-    <ul>
+    <div class="list-group">
         {#each lists as list}
-            <li>
-                <a href={`/lists/${list}`}>
-                    {list}
-                </a>
-            </li>
+            <a href={`/lists/${list}`} class="list-group-item list-group-item-action">
+                {list}
+            </a>
         {/each}
-    </ul>
+    </div>
 {:catch error}
     <Error {error}/>
 {/await}

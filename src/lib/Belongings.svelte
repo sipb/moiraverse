@@ -54,34 +54,39 @@
 
 	{#if machines.length > 0}
 		<svelte:element this={h2}>Machines</svelte:element>
+		<ul class="list-group">
 		{#each machines as machine}
-			<li>{machine}</li>
+			<li class="list-group-item">{machine}</li>
 		{/each}
+		</ul>
 	{/if}
 
 	{#if otherBelongings.length > 0}
 		<svelte:element this={h2}>Other belongings</svelte:element>
+		<ul class="list-group">
 			{#each otherBelongings as item}
-				<li>{item.name}</li>
+				<li class="list-group-item">{item.name}</li>
 			{/each}
+		</ul>
 	{/if}
 
 	{#if !onlyOwnsLists && lists.length > 0}
 		<svelte:element this={h2}>Lists</svelte:element>
-	{/if}
-
-	{#each lists as list}
-		<li>
-			<a href={`/lists/${list}`}>
+		<div class="list-group">
+		{#each lists as list}
+			<a href={`/lists/${list}`} class="list-group-item list-group-item-action">
 				{list}
 			</a>
-		</li>
-	{/each}
+		{/each}
+		</div>
+	{/if}
 
 	{#if lockers.length > 0}
 		<svelte:element this={h2}>Lockers</svelte:element>
+		<ul class="list-group">
 		{#each lockers as locker}
-			<li>{locker}</li>
+			<li class="list-group-item">{locker}</li>
 		{/each}
+		</ul>
 	{/if}
 {/if}

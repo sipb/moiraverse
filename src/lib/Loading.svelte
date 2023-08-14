@@ -1,1 +1,3 @@
-<img src="/pacman.gif" alt="Loading"/>
+<div class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+</div>
