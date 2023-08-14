@@ -36,7 +36,7 @@
 
 <header>
     <nav class="navbar navbar-expand-lg sticky-top bg-primary">
-        <div class="container-fluid">
+        <div class="container">
             <a class="navbar-brand" href="/">MoiraVerse</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#moiraNav" aria-controls="moiraNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
