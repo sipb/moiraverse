@@ -61,24 +61,6 @@
 		ofc that wouldn't matter once we do our CSS, so add <ul> pls
 	-->
 
-	{#if machines.length > 0}
-		<svelte:element this={h2}>Machines</svelte:element>
-		<ul class="list-group">
-			{#each machines as machine}
-				<li class="list-group-item">{machine}</li>
-			{/each}
-		</ul>
-	{/if}
-
-	{#if otherBelongings.length > 0}
-		<svelte:element this={h2}>Other belongings</svelte:element>
-		<ul class="list-group">
-			{#each otherBelongings as item}
-				<li class="list-group-item">{item.name}</li>
-			{/each}
-		</ul>
-	{/if}
-
 	{#if lists.length > 0}
 		{#if !onlyOwnsLists}
 			<svelte:element this={h2}>Lists</svelte:element>
@@ -97,6 +79,24 @@
 		<ul class="list-group">
 			{#each lockers as locker}
 				<li class="list-group-item">{locker}</li>
+			{/each}
+		</ul>
+	{/if}
+
+	{#if machines.length > 0}
+		<svelte:element this={h2}>Machines</svelte:element>
+		<ul class="list-group">
+			{#each machines as machine}
+				<li class="list-group-item">{machine}</li>
+			{/each}
+		</ul>
+	{/if}
+
+	{#if otherBelongings.length > 0}
+		<svelte:element this={h2}>Other belongings</svelte:element>
+		<ul class="list-group">
+			{#each otherBelongings as item}
+				<li class="list-group-item">{item.name}</li>
 			{/each}
 		</ul>
 	{/if}

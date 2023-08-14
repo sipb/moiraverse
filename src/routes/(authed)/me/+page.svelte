@@ -13,12 +13,16 @@
 {#await getUserInfo($ticket)}
 	<Loading />
 {:then userInfo}
-	<ul>
-		<li><strong>Full name: </strong>{userInfo.full_name}</li>
-		<li><strong>Kerb: </strong>{userInfo.kerb}</li>
-		<li><strong>Class year: </strong>{userInfo.class_year}</li>
-		<li><strong>MIT ID: </strong>{userInfo.mit_id}</li>
-	</ul>
+	<dl>
+		<dt>Full name:</dt>
+		<dd>{userInfo.full_name}</dd>
+		<dt>Kerb:</dt>
+		<dd>{userInfo.kerb}</dd>
+		<dt>Class year:</dt>
+		<dd>{userInfo.class_year}</dd>
+		<dt>MIT ID:</dt>
+		<dd>{userInfo.mit_id}</dd>
+	</dl>
 {:catch error}
 	<Error {error} />
 {/await}
