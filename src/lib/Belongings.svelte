@@ -2,6 +2,7 @@
 	import Loading from '$lib/Loading.svelte';
 	import Error from '$lib/Error.svelte';
 	import type { Belonging, MoiraException } from '$lib/types';
+	import { base } from '$app/paths';
 
 	export let headingLevel: number;
 	export let self: string = 'I';
@@ -67,7 +68,7 @@
 		{/if}
 		<div class="list-group">
 			{#each lists as list}
-				<a href={`/lists/${list}`} class="list-group-item list-group-item-action">
+				<a href="{base}/lists/{list}" class="list-group-item list-group-item-action">
 					{list}
 				</a>
 			{/each}
