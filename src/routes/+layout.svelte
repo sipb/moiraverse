@@ -42,7 +42,7 @@
 </script>
 
 <header class="sticky-top">
-	<nav class="navbar navbar-expand-lg bg-body-tertiary">
+	<nav class="navbar navbar-expand-md bg-body-tertiary">
 		<div class="container">
 			<a class="navbar-brand" href={`${base}/`}>MoiraVerse</a>
 			<button

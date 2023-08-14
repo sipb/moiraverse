@@ -29,10 +29,10 @@
 	{:else}
 		<dl class="row">
 			<!-- TODO make this nice-looking, descriptive and user-friendly. use icons! -->
-			<dt class="col-sm-3">Description</dt>
-			<dd class="col-sm-9">{info.description}</dd>
-			<dt class="col-sm-3">Owner:</dt>
-			<dd class="col-sm-9">
+			<dt class="col-md-3">Description</dt>
+			<dd class="col-md-9">{info.description}</dd>
+			<dt class="col-md-3">Owner:</dt>
+			<dd class="col-md-9">
 				{#if info.owner.type == 'list'}
 					<a href="{base}/lists/{info.owner.name}">{info.owner.name}</a>
 				{:else}
@@ -41,8 +41,8 @@
 			</dd>
 			<!-- the deeper you go the more it would make sense to have with blocks like Hugo -->
 			{#if info.membership_administrator}
-				<dt class="col-sm-3">Membership administrator:</dt>
-				<dd class="col-sm-9">
+				<dt class="col-md-3">Membership administrator:</dt>
+				<dd class="col-md-9">
 					{#if info.membership_administrator.type == 'list'}
 						<a href="{base}/lists/{info.membership_administrator.name}"
 							>{info.membership_administrator.name}</a
@@ -52,22 +52,22 @@
 					{/if}
 				</dd>
 			{/if}
-			<dt class="col-sm-3">Active:</dt>
-			<dd class="col-sm-9">{humanBool(info.active)}</dd>
-			<dt class="col-sm-3">Is mailing list:</dt>
-			<dd class="col-sm-9">{humanBool(info.is_mailing_list)}</dd>
-			<dt class="col-sm-3">Anyone can add themselves:</dt>
-			<dd class="col-sm-9">{humanBool(info.public)}</dd>
-			<dt class="col-sm-3">Only admins can see members:</dt>
-			<dd class="col-sm-9">{humanBool(info.hidden)}</dd>
-			<dt class="col-sm-3">Sync membership to AFS:</dt>
-			<dd class="col-sm-9">{humanBool(info.is_afs_group)}</dd>
-			<dt class="col-sm-3">Sync membership to DNS records:</dt>
-			<dd class="col-sm-9">{humanBool(info.is_nfs_group)}</dd>
-			<dt class="col-sm-3">Controls tap access:</dt>
-			<dd class="col-sm-9">{humanBool(info.is_physical_access)}</dd>
-			<dt class="col-sm-3">Last modified:</dt>
-			<dd class="col-sm-9">
+			<dt class="col-md-3">Active:</dt>
+			<dd class="col-md-9">{humanBool(info.active)}</dd>
+			<dt class="col-md-3">Is mailing list:</dt>
+			<dd class="col-md-9">{humanBool(info.is_mailing_list)}</dd>
+			<dt class="col-md-3">Anyone can add themselves:</dt>
+			<dd class="col-md-9">{humanBool(info.public)}</dd>
+			<dt class="col-md-3">Only admins can see members:</dt>
+			<dd class="col-md-9">{humanBool(info.hidden)}</dd>
+			<dt class="col-md-3">Sync membership to AFS:</dt>
+			<dd class="col-md-9">{humanBool(info.is_afs_group)}</dd>
+			<dt class="col-md-3">Sync membership to DNS records:</dt>
+			<dd class="col-md-9">{humanBool(info.is_nfs_group)}</dd>
+			<dt class="col-md-3">Controls tap access:</dt>
+			<dd class="col-md-9">{humanBool(info.is_physical_access)}</dd>
+			<dt class="col-md-3">Last modified:</dt>
+			<dd class="col-md-9">
 				by {info.last_modified.user} using {info.last_modified.tool} on {info.last_modified.time}
 			</dd>
 		</dl>
