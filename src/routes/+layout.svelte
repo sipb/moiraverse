@@ -6,11 +6,12 @@
 	import { encodeTicket } from '$lib/webathena';
 	import { persisted } from 'svelte-local-storage-store';
 	import { goto } from '$app/navigation';
+	import { base } from '$app/paths';
 
 	const routes = [
 		// {path: '/', name: 'Home'},
-		{ path: '/lists', name: 'My lists' },
-		{ path: '/me', name: 'About me' }
+		{ path: `${base}/lists`, name: 'My lists' },
+		{ path: `${base}/me`, name: 'About me' }
 	];
 
 	// TODO: sensible behavior when ticket expires
@@ -40,7 +41,7 @@
 <header class="sticky-top">
 	<nav class="navbar navbar-expand-lg bg-primary">
 		<div class="container">
-			<a class="navbar-brand" href="/">MoiraVerse</a>
+			<a class="navbar-brand" href={`${base}/`}>MoiraVerse</a>
 			<button
 				class="navbar-toggler"
 				type="button"
@@ -83,7 +84,7 @@
 						id="button-searchlist"
 						on:click={() => {
 							if (searchQuery.trim().length > 0) {
-								goto(`/lists/${searchQuery.trim()}`);
+								goto(`${base}/lists/${searchQuery.trim()}`);
 							}
 						}}>Go</button
 					>

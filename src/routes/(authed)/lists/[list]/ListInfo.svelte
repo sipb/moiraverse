@@ -3,6 +3,7 @@
 	import Loading from '$lib/Loading.svelte';
 	import { getListInfo } from '$lib/moira';
 	import type { Readable } from 'svelte/store';
+	import { base } from '$app/paths';
 
 	export let listName: string;
 
@@ -32,7 +33,7 @@
 			<li>
 				<strong>Owner: </strong>
 				{#if info.owner.type == 'list'}
-					<a href="/lists/{info.owner.name}">{info.owner.name}</a>
+					<a href="{base}/lists/{info.owner.name}">{info.owner.name}</a>
 				{:else}
 					{info.owner.name}
 				{/if}
@@ -42,7 +43,7 @@
 				<li>
 					<strong>Membership administrator: </strong>
 					{#if info.membership_administrator.type == 'list'}
-						<a href="/lists/{info.membership_administrator.name}"
+						<a href="{base}/lists/{info.membership_administrator.name}"
 							>{info.membership_administrator.name}</a
 						>
 					{:else}

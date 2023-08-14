@@ -4,6 +4,7 @@
 	import { getListLists } from '$lib/moira';
 	import type { Readable } from 'svelte/store';
 	import Error from '$lib/Error.svelte';
+	import { base } from '$app/paths';
 
 	export let listName: string;
 
@@ -17,7 +18,7 @@
 {:then lists}
 	<div class="list-group">
 		{#each lists as list}
-			<a href={`/lists/${list}`} class="list-group-item list-group-item-action">
+			<a href="{base}/lists/${list}" class="list-group-item list-group-item-action">
 				{list}
 			</a>
 		{/each}
