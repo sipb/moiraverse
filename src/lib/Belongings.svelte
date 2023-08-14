@@ -3,41 +3,50 @@
 	import Error from '$lib/Error.svelte';
 	import type { Belonging, MoiraException } from '$lib/types';
 
-    export let headingLevel: number;
-    export let self: string = "I";
-    export let loading: boolean = true;
-    export let hasError: boolean = false;
-    export let error: MoiraException;
+	export let headingLevel: number;
+	export let self: string = 'I';
+	export let loading: boolean = true;
+	export let hasError: boolean = false;
+	export let error: MoiraException;
 	export let belongings: Belonging[] = [];
 
 	$: console.log(belongings);
 
 	let lists: string[] = [];
-	$: lists = belongings.filter((b) => b.type === 'list').map((b) => b.name).sort();
+	$: lists = belongings
+		.filter((b) => b.type === 'list')
+		.map((b) => b.name)
+		.sort();
 
 	let lockers: string[] = [];
-	$: lockers = belongings.filter((b) => b.type === 'filesys').map((b) => b.name).sort();
+	$: lockers = belongings
+		.filter((b) => b.type === 'filesys')
+		.map((b) => b.name)
+		.sort();
 
 	let machines: string[] = [];
-	$: machines = belongings.filter((b) => b.type === 'machine').map((b) => b.name).sort();
+	$: machines = belongings
+		.filter((b) => b.type === 'machine')
+		.map((b) => b.name)
+		.sort();
 
 	let otherBelongings: Belonging[] = [];
 	$: otherBelongings = belongings.filter((b) => !['list', 'filesys', 'machine'].includes(b.type));
 	// remove duplicates
 	$: otherBelongings = [...new Set(otherBelongings)];
 
-    // Calculate relative headings
-    $: h1 = `h${headingLevel}`;
-    $: h2 = `h${headingLevel + 1}`;
+	// Calculate relative headings
+	$: h1 = `h${headingLevel}`;
+	$: h2 = `h${headingLevel + 1}`;
 
 	$: onlyOwnsLists = belongings.every((b) => b.type === 'list');
 	$: console.log(onlyOwnsLists);
 </script>
 
 {#if onlyOwnsLists}
-    <svelte:element this={h1}>Lists {self} can administer</svelte:element>
+	<svelte:element this={h1}>Lists {self} can administer</svelte:element>
 {:else}
-    <svelte:element this={h1}>What can {self} administer?</svelte:element>
+	<svelte:element this={h1}>What can {self} administer?</svelte:element>
 {/if}
 
 {#if hasError}
@@ -55,9 +64,9 @@
 	{#if machines.length > 0}
 		<svelte:element this={h2}>Machines</svelte:element>
 		<ul class="list-group">
-		{#each machines as machine}
-			<li class="list-group-item">{machine}</li>
-		{/each}
+			{#each machines as machine}
+				<li class="list-group-item">{machine}</li>
+			{/each}
 		</ul>
 	{/if}
 
@@ -73,20 +82,20 @@
 	{#if !onlyOwnsLists && lists.length > 0}
 		<svelte:element this={h2}>Lists</svelte:element>
 		<div class="list-group">
-		{#each lists as list}
-			<a href={`/lists/${list}`} class="list-group-item list-group-item-action">
-				{list}
-			</a>
-		{/each}
+			{#each lists as list}
+				<a href={`/lists/${list}`} class="list-group-item list-group-item-action">
+					{list}
+				</a>
+			{/each}
 		</div>
 	{/if}
 
 	{#if lockers.length > 0}
 		<svelte:element this={h2}>Lockers</svelte:element>
 		<ul class="list-group">
-		{#each lockers as locker}
-			<li class="list-group-item">{locker}</li>
-		{/each}
+			{#each lockers as locker}
+				<li class="list-group-item">{locker}</li>
+			{/each}
 		</ul>
 	{/if}
 {/if}
