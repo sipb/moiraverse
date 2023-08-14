@@ -35,14 +35,14 @@
 	if (theme === 'dark') {
 		document.documentElement.setAttribute('data-bs-theme', 'dark');
 	} else {
-		document.documentElement.setAttribute('data-bs-theme', theme);
+		document.documentElement.setAttribute('data-bs-theme', 'light');
 	}
 
 	let searchQuery: string = '';
 </script>
 
 <header class="sticky-top">
-	<nav class="navbar navbar-expand-lg bg-primary">
+	<nav class="navbar navbar-expand-lg bg-body-tertiary">
 		<div class="container">
 			<a class="navbar-brand" href={`${base}/`}>MoiraVerse</a>
 			<button
@@ -81,6 +81,7 @@
 						on:keydown={(e) =>
 							e.key == 'Enter' ? document.getElementById('button-searchlist')?.click() : null}
 					/>
+
 					<button
 						class="btn btn-secondary"
 						type="button"
@@ -92,8 +93,27 @@
 						}}>Go</button
 					>
 				</div>
+
+				<button
+					class="btn btn-success me-2"
+					type="button"
+					id="button-searchlist"
+					on:click={() => {
+						goto('https://listmaker.mit.edu/lc');
+					}}>Create a New List</button
+				>
+
+				<button
+					type="button"
+					class="btn btn-info me-2"
+					data-bs-toggle="modal"
+					data-bs-target="#helpModal"
+				>
+					Help
+				</button>
+
 				{#if $webathena === null}
-					<button type="button" class="btn btn-success" id="login" on:click={login}>Login</button>
+					<button type="button" class="btn btn-primary" id="login" on:click={login}>Login</button>
 				{:else}
 					<button
 						type="button"
@@ -106,6 +126,24 @@
 		</div>
 	</nav>
 </header>
+
+<div
+	class="modal fade"
+	id="helpModal"
+	tabindex="-1"
+	aria-labelledby="helpModalLabel"
+	aria-hidden="true"
+>
+	<div class="modal-dialog modal-dialog-scrollable">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="helpModalLabel">MoiraVerse Help</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" />
+			</div>
+			<div class="modal-body">...</div>
+		</div>
+	</div>
+</div>
 
 <main>
 	<div class="container mt-3">
