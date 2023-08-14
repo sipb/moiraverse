@@ -26,21 +26,22 @@
 			>
 		</p>
 	{:else}
-		<ul>
+		<dl class="row">
 			<!-- TODO make this nice-looking, descriptive and user-friendly. use icons! -->
-			<li><strong>Description: </strong>{info.description}</li>
-			<li>
-				<strong>Owner: </strong>
+			<dt class="col-sm-3">Description</dt>
+			<dd class="col-sm-9">{info.description}</dd>
+			<dt class="col-sm-3">Owner:</dt>
+			<dd class="col-sm-9">
 				{#if info.owner.type == 'list'}
 					<a href="/lists/{info.owner.name}">{info.owner.name}</a>
 				{:else}
 					{info.owner.name}
 				{/if}
-			</li>
+			</dd>
 			<!-- the deeper you go the more it would make sense to have with blocks like Hugo -->
 			{#if info.membership_administrator}
-				<li>
-					<strong>Membership administrator: </strong>
+				<dt class="col-sm-3">Membership administrator:</dt>
+				<dd class="col-sm-9">
 					{#if info.membership_administrator.type == 'list'}
 						<a href="/lists/{info.membership_administrator.name}"
 							>{info.membership_administrator.name}</a
@@ -48,19 +49,26 @@
 					{:else}
 						{info.membership_administrator.name}
 					{/if}
-				</li>
+				</dd>
 			{/if}
-			<li><strong>Active: </strong>{humanBool(info.active)}</li>
-			<li><strong>Is mailing list: </strong>{humanBool(info.is_mailing_list)}</li>
-			<li><strong>Anyone can add themselves: </strong>{humanBool(info.public)}</li>
-			<li><strong>Only admins can see members: </strong>{humanBool(info.hidden)}</li>
-			<li><strong>Sync membership to AFS: </strong>{humanBool(info.is_afs_group)}</li>
-			<li><strong>Sync membership to DNS records: </strong>{humanBool(info.is_nfs_group)}</li>
-			<li><strong>Controls tap access: </strong>{humanBool(info.is_physical_access)}</li>
-			<li>
-				Last modified {info.last_modified.time} by {info.last_modified.user} using {info
-					.last_modified.tool}
-			</li>
-		</ul>
+			<dt class="col-sm-3">Active:</dt>
+			<dd class="col-sm-9">{humanBool(info.active)}</dd>
+			<dt class="col-sm-3">Is mailing list:</dt>
+			<dd class="col-sm-9">{humanBool(info.is_mailing_list)}</dd>
+			<dt class="col-sm-3">Anyone can add themselves:</dt>
+			<dd class="col-sm-9">{humanBool(info.public)}</dd>
+			<dt class="col-sm-3">Only admins can see members:</dt>
+			<dd class="col-sm-9">{humanBool(info.hidden)}</dd>
+			<dt class="col-sm-3">Sync membership to AFS:</dt>
+			<dd class="col-sm-9">{humanBool(info.is_afs_group)}</dd>
+			<dt class="col-sm-3">Sync membership to DNS records:</dt>
+			<dd class="col-sm-9">{humanBool(info.is_nfs_group)}</dd>
+			<dt class="col-sm-3">Controls tap access:</dt>
+			<dd class="col-sm-9">{humanBool(info.is_physical_access)}</dd>
+			<dt class="col-sm-3">Last modified:</dt>
+			<dd class="col-sm-9">
+				by {info.last_modified.user} using {info.last_modified.tool} on {info.last_modified.time}
+			</dd>
+		</dl>
 	{/if}
 {/await}
