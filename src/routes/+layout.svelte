@@ -8,6 +8,9 @@
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
 
+	import 'bootstrap/dist/css/bootstrap.min.css';
+	import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
 	const routes = [
 		// {path: '/', name: 'Home'},
 		{ path: `${base}/lists`, name: 'My lists' },
@@ -110,6 +113,6 @@
 	</div>
 </main>
 
-<footer class="text-center">
+<footer class="mt-auto text-center">
 	<small> Brought to you by SIPB. </small>
 </footer>
