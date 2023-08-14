@@ -86,7 +86,7 @@
 		{/if}
 		<div class="list-group">
 			{#each lists as list}
-				<a href={`${base}/lists/${list}`} class="list-group-item list-group-item-action">
+				<a href="{base}/lists/{list}" class="list-group-item list-group-item-action">
 					{list}
 				</a>
 			{/each}
