@@ -34,8 +34,8 @@
 	}
 </script>
 
-<header>
-	<nav class="navbar navbar-expand-lg sticky-top bg-primary">
+<header class="sticky-top">
+	<nav class="navbar navbar-expand-lg bg-primary">
 		<div class="container">
 			<a class="navbar-brand" href="/">MoiraVerse</a>
 			<button
