@@ -5,9 +5,9 @@
 
 <div class="row">
 	<div class="col">
-		<MyLists/>
+		<MyLists />
 	</div>
 	<div class="col">
-		<MyBelongings/>
+		<MyBelongings />
 	</div>
 </div>

@@ -2,7 +2,7 @@
 // by not requiring a backend
 
 // The harming SEO probably doesn't matter, since everything
-// requires login anyway. In fact it might be better that 
+// requires login anyway. In fact it might be better that
 // random lists don't end up on search results (but robots.txt
 // would work for that purpose too)
 

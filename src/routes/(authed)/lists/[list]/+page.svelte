@@ -1,11 +1,11 @@
 <script lang="ts">
 	import ListInfo from './ListInfo.svelte';
-    import ListMembers from './ListMembers.svelte';
-    import ListLists from './ListLists.svelte';
+	import ListMembers from './ListMembers.svelte';
+	import ListLists from './ListLists.svelte';
 	import ListBelongings from './ListBelongings.svelte';
-    
-    export let data;
-    $: listName = data.list;
+
+	export let data;
+	$: listName = data.list;
 </script>
 
 <ListInfo {listName} />
