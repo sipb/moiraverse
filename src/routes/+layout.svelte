@@ -5,6 +5,7 @@
 	import { writable, derived } from 'svelte/store';
 	import { encodeTicket } from '$lib/webathena';
 	import { persisted } from 'svelte-local-storage-store';
+	import { goto } from '$app/navigation';
 
 	const routes = [
 		// {path: '/', name: 'Home'},
@@ -32,6 +33,8 @@
 	} else {
 		document.documentElement.setAttribute('data-bs-theme', theme);
 	}
+
+	let searchQuery: string = '';
 </script>
 
 <header class="sticky-top">
@@ -56,8 +59,8 @@
 							<a
 								href={route.path}
 								aria-current={route.path === $page.url.pathname}
-								class={'nav-link' + (route.path === $page.url.pathname ? ' active' : '')}
-								>{route.name}</a
+								class:active={route.path === $page.url.pathname}
+								class="nav-link">{route.name}</a
 							>
 						</li>
 					{/each}
@@ -70,6 +73,7 @@
 						aria-label="Find a List"
 						aria-describedby="button-searchlist"
 						id="searchlist"
+						bind:value={searchQuery}
 						on:keydown={(e) =>
 							e.key == 'Enter' ? document.getElementById('button-searchlist')?.click() : null}
 					/>
@@ -77,12 +81,11 @@
 						class="btn btn-secondary"
 						type="button"
 						id="button-searchlist"
-						on:click={() =>
-							document.getElementById('searchlist')?.value.trim().length > 0
-								? window.location.assign(
-										`/lists/${document.getElementById('searchlist')?.value.trim()}`
-								  )
-								: null}>Go</button
+						on:click={() => {
+							if (searchQuery.trim().length > 0) {
+								goto(`/lists/${searchQuery.trim()}`);
+							}
+						}}>Go</button
 					>
 				</div>
 				{#if $webathena === null}
