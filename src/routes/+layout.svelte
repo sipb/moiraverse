@@ -13,9 +13,9 @@
 	import 'bootstrap-icons/font/bootstrap-icons.css';
 
 	const routes = [
-		// {path: '/', name: 'Home'},
-		{ path: `${base}/lists`, name: 'My lists' },
-		{ path: `${base}/me`, name: 'About me' }
+		// {path: '{base}/', name: 'Home', icon: 'house'},
+		{ path: `${base}/lists`, name: 'My lists', icon: 'list' },
+		{ path: `${base}/me`, name: 'About me', icon: 'person' }
 	];
 
 	// TODO: sensible behavior when ticket expires
@@ -43,7 +43,7 @@
 </script>
 
 <header class="sticky-top">
-	<nav class="navbar navbar-expand-md bg-body-tertiary">
+	<nav class="navbar navbar-expand-lg bg-body-tertiary">
 		<div class="container">
 			<a class="navbar-brand" href={`${base}/`}>MoiraVerse</a>
 			<button
@@ -67,7 +67,10 @@
 								class:active={route.path === $page.url.pathname}
 								class:disabled={$webathena === null}
 								aria-disabled={$webathena === null}
-								class="nav-link">{route.name}</a
+								class="nav-link"
+							>
+								{#if route.icon}<i class={'bi bi-' + route.icon} /> {/if}
+								{route.name}</a
 							>
 						</li>
 					{/each}
@@ -106,7 +109,7 @@
 					data-bs-target="#createListModal"
 					disabled={$webathena === null}
 				>
-					Create a New List
+					<i class="bi bi-plus-lg" /> Create a New List
 				</button>
 
 				<button
@@ -115,19 +118,19 @@
 					data-bs-toggle="modal"
 					data-bs-target="#helpModal"
 				>
-					Help
+					<i class="bi bi-question-lg" /> Help
 				</button>
 
 				{#if $webathena === null}
 					<button type="button" class="btn btn-success" id="button-login" on:click={login}
-						>Login</button
+						><i class="bi bi-check-lg" /> Login</button
 					>
 				{:else}
 					<button
 						type="button"
 						class="btn btn-danger"
 						id="logout"
-						on:click={() => ($webathena = null)}>Logout</button
+						on:click={() => ($webathena = null)}><i class="bi bi-x-lg" /> Logout</button
 					>
 				{/if}
 			</div>
