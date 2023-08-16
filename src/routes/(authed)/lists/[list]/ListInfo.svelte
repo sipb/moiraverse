@@ -30,6 +30,7 @@
 				<a
 					class="icon-link icon-link-hover"
 					href="https://mailman.mit.edu/mailman/listinfo/{listName}"
+					target="_blank"
 				>
 					mailman.mit.edu/mailman/listinfo/{listName}
 					<i class="bi bi-arrow-right" />
@@ -40,6 +41,7 @@
 				<a
 					class="icon-link icon-link-hover"
 					href="https://mailman.mit.edu:444/mailman/admin/{listName}"
+					target="_blank"
 				>
 					mailman.mit.edu:444/mailman/admin/{listName}
 					<i class="bi bi-arrow-right" />
