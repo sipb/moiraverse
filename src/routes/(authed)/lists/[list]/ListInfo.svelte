@@ -9,7 +9,7 @@
 
 	const ticket = getContext<Readable<string>>('ticket');
 
-	function humanBool(b: boolean) {
+	function iconBool(b: boolean) {
 		return b ? `<i class="bi bi-check-lg" />` : `<i class="bi bi-x-lg" />`;
 	}
 </script>
@@ -23,7 +23,7 @@
 		<dl class="row">
 			<dt class="col-md-3"><i class="bi bi-envelope-paper" /> Mailman List</dt>
 			<dd class="col-md-9">
-				{@html humanBool(info.is_mailman_list)}
+				{@html iconBool(info.is_mailman_list)}
 			</dd>
 			<dt class="col-md-3"><i class="bi bi-info-circle" /> List Information</dt>
 			<dd class="col-md-9">
@@ -50,7 +50,6 @@
 		</dl>
 	{:else}
 		<dl class="row">
-			<!-- TODO make this nice-looking, descriptive and user-friendly. use icons! -->
 			<dt class="col-md-3"><i class="bi bi-card-text" /> Description</dt>
 			<dd class="col-md-9">{info.description}</dd>
 			<dt class="col-md-3"><i class="bi bi-pencil-square" /> Owner</dt>
@@ -82,19 +81,19 @@
 				</dd>
 			{/if}
 			<dt class="col-md-3"><i class="bi bi-activity" /> Active</dt>
-			<dd class="col-md-9">{@html humanBool(info.active)}</dd>
+			<dd class="col-md-9">{@html iconBool(info.active)}</dd>
 			<dt class="col-md-3"><i class="bi bi-envelope-at" /> Is mailing list</dt>
-			<dd class="col-md-9">{@html humanBool(info.is_mailing_list)}</dd>
+			<dd class="col-md-9">{@html iconBool(info.is_mailing_list)}</dd>
 			<dt class="col-md-3"><i class="bi bi-person-add" /> Anyone can add themselves</dt>
-			<dd class="col-md-9">{@html humanBool(info.public)}</dd>
+			<dd class="col-md-9">{@html iconBool(info.public)}</dd>
 			<dt class="col-md-3"><i class="bi bi-person-lock" /> Only admins can see members</dt>
-			<dd class="col-md-9">{@html humanBool(info.hidden)}</dd>
+			<dd class="col-md-9">{@html iconBool(info.hidden)}</dd>
 			<dt class="col-md-3"><i class="bi bi-hdd-network" /> Sync membership to AFS</dt>
-			<dd class="col-md-9">{@html humanBool(info.is_afs_group)}</dd>
+			<dd class="col-md-9">{@html iconBool(info.is_afs_group)}</dd>
 			<dt class="col-md-3"><i class="bi bi-router" /> Sync membership to DNS records</dt>
-			<dd class="col-md-9">{@html humanBool(info.is_nfs_group)}</dd>
+			<dd class="col-md-9">{@html iconBool(info.is_nfs_group)}</dd>
 			<dt class="col-md-3"><i class="bi bi-door-open" /> Controls tap access</dt>
-			<dd class="col-md-9">{@html humanBool(info.is_physical_access)}</dd>
+			<dd class="col-md-9">{@html iconBool(info.is_physical_access)}</dd>
 			<dt class="col-md-3"><i class="bi bi-clock-history" /> Last modified</dt>
 			<dd class="col-md-9">
 				by {info.last_modified.user} using {info.last_modified.tool} on {new Date(
