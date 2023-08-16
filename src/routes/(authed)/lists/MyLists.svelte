@@ -25,11 +25,49 @@
 
 <h1>Lists I Am On {#await countLists(showRecursiveLists) then count}({count}){/await}</h1>
 
-<label>
-	<input type="checkbox" bind:checked={showRecursiveLists} />
-	Show lists I am in through another list
-</label>
-<br/>
+{#await Promise.all([allListsPromise, nonRecursiveListsPromise])}
+	<div class="form-check form-switch">
+		<input
+			class="form-check-input"
+			type="checkbox"
+			role="switch"
+			id="showRecursiveList"
+			bind:checked={showRecursiveLists}
+			disabled={true}
+		/>
+		<label class="form-check-label" for="showRecursiveList"
+			>Show lists I am in through another list</label
+		>
+	</div>
+{:then}
+	<div class="form-check form-switch">
+		<input
+			class="form-check-input"
+			type="checkbox"
+			role="switch"
+			id="showRecursiveList"
+			bind:checked={showRecursiveLists}
+			disabled={false}
+		/>
+		<label class="form-check-label" for="showRecursiveList"
+			>Show lists I am in through another list</label
+		>
+	</div>
+{:catch}
+	<div class="form-check form-switch">
+		<input
+			class="form-check-input"
+			type="checkbox"
+			role="switch"
+			id="showRecursiveList"
+			bind:checked={showRecursiveLists}
+			disabled={true}
+		/>
+		<label class="form-check-label" for="showRecursiveList"
+			>Show lists I am in through another list</label
+		>
+	</div>
+{/await}
 
 {#await Promise.all([allListsPromise, nonRecursiveListsPromise])}
 	<Loading />
