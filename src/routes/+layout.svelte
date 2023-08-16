@@ -33,14 +33,16 @@
 	}
 
 	const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-	if (theme === 'dark') {
-		document.documentElement.setAttribute('data-bs-theme', 'dark');
-	} else {
-		document.documentElement.setAttribute('data-bs-theme', 'light');
-	}
+	document.documentElement.setAttribute('data-bs-theme', theme);
 
 	let searchQuery: string = '';
+
+	document.body.classList.add('d-flex', 'flex-column', 'min-vh-100');
 </script>
+
+<svelte:head>
+	<title>MoiraVerse</title>
+</svelte:head>
 
 <header class="sticky-top">
 	<nav class="navbar navbar-expand-lg bg-body-tertiary">
