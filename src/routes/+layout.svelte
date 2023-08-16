@@ -183,8 +183,9 @@
 
 <footer class="mt-auto text-center bg-body-tertiary py-1">
 	<em
-		>Brought to you by <a class="icon-link" href="https://sipb.mit.edu/"
-			>SIPB<i class="bi-arrow-right" /></a
-		></em
+		>Brought to you by <a class="icon-link icon-link-hover" href="https://sipb.mit.edu/">
+			SIPB
+			<i class="bi bi-arrow-right" />
+		</a></em
 	>
 </footer>
