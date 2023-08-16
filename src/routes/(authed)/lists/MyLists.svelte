@@ -21,11 +21,13 @@
 			return (await nonRecursiveListsPromise).length;
 		}
 	}
+
+	const listsReady = Promise.all([allListsPromise, nonRecursiveListsPromise]);
 </script>
 
 <h1>Lists I Am On {#await countLists(showRecursiveLists) then count}({count}){/await}</h1>
 
-{#await Promise.all([allListsPromise, nonRecursiveListsPromise])}
+{#await listsReady}
 	<div class="form-check form-switch">
 		<input
 			class="form-check-input"
@@ -69,7 +71,7 @@
 	</div>
 {/await}
 
-{#await Promise.all([allListsPromise, nonRecursiveListsPromise])}
+{#await listsReady}
 	<Loading />
 {:then [lists, listNoRecurse]}
 	<div class="list-group">
