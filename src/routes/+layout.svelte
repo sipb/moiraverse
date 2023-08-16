@@ -65,6 +65,8 @@
 								href={route.path}
 								aria-current={route.path === $page.url.pathname}
 								class:active={route.path === $page.url.pathname}
+								class:disabled={$webathena === null}
+								aria-disabled={$webathena === null}
 								class="nav-link">{route.name}</a
 							>
 						</li>
@@ -147,7 +149,11 @@
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" />
 			</div>
 			<div class="modal-body overflow-hidden">
-				<iframe title="List Creator" class="w-100 h-100" src="https://listmaker.mit.edu/lc" />
+				<iframe
+					title="List Creator"
+					class="w-100 h-100 p-0 m-0"
+					src="https://listmaker.mit.edu/lc"
+				/>
 			</div>
 		</div>
 	</div>
