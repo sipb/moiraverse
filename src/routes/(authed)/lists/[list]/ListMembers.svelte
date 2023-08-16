@@ -22,11 +22,11 @@
 		<ul class="list-group">
 			{#each members.users as user}
 				<li class="list-group-item">
-					{#await getUserInfo($ticket, user) then userInfo}
+					<!-- {#await getUserInfo($ticket, user) then userInfo}
 						{userInfo.full_name} ({user})
-					{:catch}
-						{user}
-					{/await}
+					{:catch} -->
+					{user}
+					<!-- {/await} -->
 				</li>
 			{/each}
 		</ul>
