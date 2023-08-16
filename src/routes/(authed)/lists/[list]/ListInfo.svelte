@@ -14,7 +14,7 @@
 	}
 </script>
 
-<h1>List info for {listName}</h1>
+<h1>List Info: {listName}</h1>
 
 {#await getListInfo($ticket, listName)}
 	<Loading />

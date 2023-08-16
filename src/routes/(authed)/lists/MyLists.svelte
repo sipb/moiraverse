@@ -9,7 +9,7 @@
 	const ticket = getContext<Readable<string>>('ticket');
 </script>
 
-<h1>Lists I am on</h1>
+<h1>Lists I Am On {#await getLists($ticket) then lists}({lists.length}){/await}</h1>
 
 {#await getLists($ticket)}
 	<Loading />

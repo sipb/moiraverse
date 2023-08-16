@@ -45,9 +45,11 @@
 </script>
 
 {#if onlyOwnsLists}
-	<svelte:element this={h1}>Lists {self} can administer</svelte:element>
+	<svelte:element this={h1}
+		>Lists {self} Can Administer {#if !loading && lists.length > 0}({lists.length}){/if}</svelte:element
+	>
 {:else}
-	<svelte:element this={h1}>What can {self} administer?</svelte:element>
+	<svelte:element this={h1}>What Can {self} Administer?</svelte:element>
 {/if}
 
 {#if hasError}
@@ -64,7 +66,7 @@
 
 	{#if lists.length > 0}
 		{#if !onlyOwnsLists}
-			<svelte:element this={h2}>Lists</svelte:element>
+			<svelte:element this={h2}>Lists ({lists.length})</svelte:element>
 		{/if}
 		<div class="list-group">
 			{#each lists as list}
@@ -76,7 +78,7 @@
 	{/if}
 
 	{#if lockers.length > 0}
-		<svelte:element this={h2}>Lockers</svelte:element>
+		<svelte:element this={h2}>Lockers ({lockers.length})</svelte:element>
 		<ul class="list-group">
 			{#each lockers as locker}
 				<li class="list-group-item">{locker}</li>
@@ -85,7 +87,7 @@
 	{/if}
 
 	{#if machines.length > 0}
-		<svelte:element this={h2}>Machines</svelte:element>
+		<svelte:element this={h2}>Machines ({machines.length})</svelte:element>
 		<ul class="list-group">
 			{#each machines as machine}
 				<li class="list-group-item">{machine}</li>
@@ -94,7 +96,7 @@
 	{/if}
 
 	{#if otherBelongings.length > 0}
-		<svelte:element this={h2}>Other belongings</svelte:element>
+		<svelte:element this={h2}>Other Belongings ({otherBelongings.length})</svelte:element>
 		<ul class="list-group">
 			{#each otherBelongings as item}
 				<li class="list-group-item">{item.name}</li>
