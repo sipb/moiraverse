@@ -21,55 +21,27 @@
 			return (await nonRecursiveListsPromise).length;
 		}
 	}
-
-	const listsReady = Promise.all([allListsPromise, nonRecursiveListsPromise]);
+	let listsResolved: boolean = false;
+	const listsReady = Promise.all([allListsPromise, nonRecursiveListsPromise]).finally(() => {
+		listsResolved = true;
+	});
 </script>
 
 <h1>Lists I Am On {#await countLists(showRecursiveLists) then count}({count}){/await}</h1>
 
-{#await listsReady}
-	<div class="form-check form-switch">
-		<input
-			class="form-check-input"
-			type="checkbox"
-			role="switch"
-			id="showRecursiveList"
-			bind:checked={showRecursiveLists}
-			disabled={true}
-		/>
-		<label class="form-check-label" for="showRecursiveList"
-			>Show lists I am in through another list</label
-		>
-	</div>
-{:then}
-	<div class="form-check form-switch">
-		<input
-			class="form-check-input"
-			type="checkbox"
-			role="switch"
-			id="showRecursiveList"
-			bind:checked={showRecursiveLists}
-			disabled={false}
-		/>
-		<label class="form-check-label" for="showRecursiveList"
-			>Show lists I am in through another list</label
-		>
-	</div>
-{:catch}
-	<div class="form-check form-switch">
-		<input
-			class="form-check-input"
-			type="checkbox"
-			role="switch"
-			id="showRecursiveList"
-			bind:checked={showRecursiveLists}
-			disabled={true}
-		/>
-		<label class="form-check-label" for="showRecursiveList"
-			>Show lists I am in through another list</label
-		>
-	</div>
-{/await}
+<div class="form-check form-switch">
+	<input
+		class="form-check-input"
+		type="checkbox"
+		role="switch"
+		id="showRecursiveList"
+		bind:checked={showRecursiveLists}
+		disabled={!listsResolved}
+	/>
+	<label class="form-check-label" for="showRecursiveList"
+		>Show lists I am in through another list</label
+	>
+</div>
 
 {#await listsReady}
 	<Loading />
