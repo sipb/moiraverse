@@ -78,6 +78,7 @@
 						aria-label="Find a List"
 						aria-describedby="button-searchlist"
 						id="input-searchlist"
+						disabled={$webathena === null}
 						bind:value={searchQuery}
 						on:keydown={(e) =>
 							e.key == 'Enter' ? document.getElementById('button-searchlist')?.click() : null}
@@ -87,7 +88,7 @@
 						class="btn btn-secondary"
 						type="button"
 						id="button-searchlist"
-						disabled={searchQuery.trim().length == 0}
+						disabled={searchQuery.trim().length == 0 || $webathena === null}
 						on:click={() => {
 							if (searchQuery.trim().length > 0) {
 								goto(`${base}/lists/${searchQuery.trim()}`);
