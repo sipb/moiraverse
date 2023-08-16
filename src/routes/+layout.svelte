@@ -8,8 +8,9 @@
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
 
-	import 'bootstrap/dist/css/bootstrap.min.css';
+	import '../scss/styles.scss';
 	import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+	import 'bootstrap-icons/font/bootstrap-icons.css';
 
 	const routes = [
 		// {path: '/', name: 'Home'},
@@ -76,7 +77,7 @@
 						placeholder="Find a List"
 						aria-label="Find a List"
 						aria-describedby="button-searchlist"
-						id="searchlist"
+						id="input-searchlist"
 						bind:value={searchQuery}
 						on:keydown={(e) =>
 							e.key == 'Enter' ? document.getElementById('button-searchlist')?.click() : null}
@@ -86,6 +87,7 @@
 						class="btn btn-secondary"
 						type="button"
 						id="button-searchlist"
+						disabled={searchQuery.trim().length == 0}
 						on:click={() => {
 							if (searchQuery.trim().length > 0) {
 								goto(`${base}/lists/${searchQuery.trim()}`);
@@ -95,13 +97,13 @@
 				</div>
 
 				<button
-					class="btn btn-success me-2"
 					type="button"
-					id="button-searchlist"
-					on:click={() => {
-						goto('https://listmaker.mit.edu/lc');
-					}}>Create a New List</button
+					class="btn btn-primary me-2"
+					data-bs-toggle="modal"
+					data-bs-target="#createListModal"
 				>
+					Create a New List
+				</button>
 
 				<button
 					type="button"
@@ -113,7 +115,9 @@
 				</button>
 
 				{#if $webathena === null}
-					<button type="button" class="btn btn-primary" id="login" on:click={login}>Login</button>
+					<button type="button" class="btn btn-success" id="button-login" on:click={login}
+						>Login</button
+					>
 				{:else}
 					<button
 						type="button"
@@ -129,6 +133,26 @@
 
 <div
 	class="modal fade"
+	id="createListModal"
+	tabindex="-1"
+	aria-labelledby="createListModalLabel"
+	aria-hidden="true"
+>
+	<div class="modal-dialog modal-fullscreen">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="createListModalLabel">Create a New List</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" />
+			</div>
+			<div class="modal-body overflow-hidden">
+				<iframe title="List Creator" class="w-100 h-100" src="https://listmaker.mit.edu/lc" />
+			</div>
+		</div>
+	</div>
+</div>
+
+<div
+	class="modal fade"
 	id="helpModal"
 	tabindex="-1"
 	aria-labelledby="helpModalLabel"
@@ -140,17 +164,19 @@
 				<h1 class="modal-title fs-5" id="helpModalLabel">MoiraVerse Help</h1>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" />
 			</div>
-			<div class="modal-body">...</div>
+			<div class="modal-body">This is a work in progress, check back later! :D</div>
 		</div>
 	</div>
 </div>
 
-<main>
-	<div class="container mt-3">
-		<slot />
-	</div>
+<main class="container my-3">
+	<slot />
 </main>
 
-<footer class="mt-auto text-center">
-	<small> Brought to you by SIPB. </small>
+<footer class="mt-auto text-center bg-body-tertiary py-1">
+	<em
+		>Brought to you by <a class="icon-link" href="https://sipb.mit.edu/"
+			>SIPB<i class="bi-arrow-right" /></a
+		></em
+	>
 </footer>
