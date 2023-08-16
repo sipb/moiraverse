@@ -99,6 +99,7 @@
 						on:click={() => {
 							if (searchQuery.trim().length > 0) {
 								goto(`${base}/lists/${searchQuery.trim()}`);
+								searchQuery = '';
 							}
 						}}>Go</button
 					>
