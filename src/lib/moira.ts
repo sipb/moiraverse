@@ -61,10 +61,10 @@ export async function getListBelongings(ticket: string, list: string): Promise<B
 	return belongings;
 }
 
-export async function getUserInfo(ticket: string): Promise<UserInfo> {
+export async function getUserInfo(ticket: string, user = 'me'): Promise<UserInfo> {
 	return await makeQuery({
 		method: 'GET',
-		path: '/users/me/',
+		path: `/users/${user}/`,
 		ticket
 	});
 }

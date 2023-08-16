@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
 	import Loading from '$lib/Loading.svelte';
-	import { getListMembers } from '$lib/moira';
+	import { getListMembers, getUserInfo } from '$lib/moira';
 	import type { Readable } from 'svelte/store';
 	import Error from '$lib/Error.svelte';
 	import { base } from '$app/paths';
@@ -21,7 +21,13 @@
 		<h3>Usernames</h3>
 		<ul class="list-group">
 			{#each members.users as user}
-				<li class="list-group-item">{user}</li>
+				<li class="list-group-item">
+					{#await getUserInfo($ticket, user) then userInfo}
+						{userInfo.full_name} ({user})
+					{:catch}
+						{user}
+					{/await}
+				</li>
 			{/each}
 		</ul>
 	{/if}
