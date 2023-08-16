@@ -101,6 +101,7 @@
 					class="btn btn-primary me-2"
 					data-bs-toggle="modal"
 					data-bs-target="#createListModal"
+					disabled={$webathena === null}
 				>
 					Create a New List
 				</button>
