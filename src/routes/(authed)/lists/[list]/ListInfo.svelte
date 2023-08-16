@@ -20,12 +20,34 @@
 	<Loading />
 {:then info}
 	{#if info.is_mailman_list}
-		<p>
-			This is a mailman list! Manage it at <a
-				href="https://mailman.mit.edu/mailman/listinfo/{listName}"
-				>mailman.mit.edu/mailman/listinfo/{listName}</a
-			>
-		</p>
+		<dl class="row">
+			<dt class="col-md-3"><i class="bi bi-envelope-paper" /> Mailman List</dt>
+			<dd class="col-md-9">
+				{@html humanBool(info.is_mailman_list)}
+			</dd>
+			<dt class="col-md-3"><i class="bi bi-info-circle" /> List Information</dt>
+			<dd class="col-md-9">
+				<a
+					class="icon-link icon-link-hover"
+					href="https://mailman.mit.edu/mailman/listinfo/{listName}"
+					target="_blank"
+				>
+					mailman.mit.edu/mailman/listinfo/{listName}
+					<i class="bi bi-arrow-right" />
+				</a>
+			</dd>
+			<dt class="col-md-3"><i class="bi bi-gear" /> Admin Dashboard (Certs Required)</dt>
+			<dd class="col-md-9">
+				<a
+					class="icon-link icon-link-hover"
+					href="https://mailman.mit.edu:444/mailman/admin/{listName}"
+					target="_blank"
+				>
+					mailman.mit.edu:444/mailman/admin/{listName}
+					<i class="bi bi-arrow-right" />
+				</a>
+			</dd>
+		</dl>
 	{:else}
 		<dl class="row">
 			<!-- TODO make this nice-looking, descriptive and user-friendly. use icons! -->
@@ -34,7 +56,10 @@
 			<dt class="col-md-3"><i class="bi bi-pencil-square" /> Owner</dt>
 			<dd class="col-md-9">
 				{#if info.owner.type == 'list'}
-					<a href="{base}/lists/{info.owner.name}">{info.owner.name}</a>
+					<a class="icon-link icon-link-hover" href="{base}/lists/{info.owner.name}">
+						{info.owner.name}
+						<i class="bi bi-arrow-right" />
+					</a>
 				{:else}
 					{info.owner.name}
 				{/if}
@@ -44,9 +69,13 @@
 				<dt class="col-md-3"><i class="bi bi-person-gear" /> Membership administrator</dt>
 				<dd class="col-md-9">
 					{#if info.membership_administrator.type == 'list'}
-						<a href="{base}/lists/{info.membership_administrator.name}"
-							>{info.membership_administrator.name}</a
+						<a
+							class="icon-link icon-link-hover"
+							href="{base}/lists/{info.membership_administrator.name}"
 						>
+							{info.membership_administrator.name}
+							<i class="bi bi-arrow-right" />
+						</a>
 					{:else}
 						{info.membership_administrator.name}
 					{/if}

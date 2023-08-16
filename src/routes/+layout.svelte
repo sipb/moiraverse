@@ -99,6 +99,7 @@
 						on:click={() => {
 							if (searchQuery.trim().length > 0) {
 								goto(`${base}/lists/${searchQuery.trim()}`);
+								searchQuery = '';
 							}
 						}}>Go</button
 					>
@@ -188,7 +189,11 @@
 
 <footer class="mt-auto text-center bg-body-tertiary py-1">
 	<em
-		>Brought to you by <a class="icon-link icon-link-hover" href="https://sipb.mit.edu/">
+		>Brought to you by <a
+			class="icon-link icon-link-hover"
+			target="_blank"
+			href="https://sipb.mit.edu/"
+		>
 			SIPB
 			<i class="bi bi-arrow-right" />
 		</a></em
