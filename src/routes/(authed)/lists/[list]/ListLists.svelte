@@ -11,7 +11,7 @@
 	const ticket = getContext<Readable<string>>('ticket');
 </script>
 
-<h2>Lists {listName} is on</h2>
+<h2>Lists {listName} Is On</h2>
 
 {#await getListLists($ticket, listName)}
 	<Loading />

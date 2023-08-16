@@ -33,6 +33,16 @@ export async function getLists(ticket: string): Promise<string[]> {
 	return lists;
 }
 
+export async function getListsNoRecurse(ticket: string): Promise<string[]> {
+	const lists: string[] = await makeQuery({
+		method: 'GET',
+		path: '/users/me/lists?recurse=false',
+		ticket
+	});
+	lists.sort();
+	return lists;
+}
+
 export async function getUserBelongings(ticket: string): Promise<Belonging[]> {
 	const belongings: Belonging[] = await makeQuery({
 		method: 'GET',
@@ -51,10 +61,10 @@ export async function getListBelongings(ticket: string, list: string): Promise<B
 	return belongings;
 }
 
-export async function getUserInfo(ticket: string): Promise<UserInfo> {
+export async function getUserInfo(ticket: string, user = 'me'): Promise<UserInfo> {
 	return await makeQuery({
 		method: 'GET',
-		path: '/users/me/',
+		path: `/users/${user}/`,
 		ticket
 	});
 }
