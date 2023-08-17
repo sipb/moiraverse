@@ -39,3 +39,8 @@ export function loginWebathena(): Promise<any> {
 export function encodeTicket(webathena: any) {
 	return btoa(JSON.stringify(webathena));
 }
+
+// This the same as /whoami on the moira-rest-api
+export function getUsername(webathena: any) {
+	return webathena.cname.nameString[0]
+}
