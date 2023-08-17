@@ -65,3 +65,5 @@ export type ListMembers = {
 	emails: string[];
 	kerberos: string[];
 };
+
+export type MemberType = 'user' | 'email' | 'list' | 'kerberos';

@@ -1,5 +1,13 @@
 import { PUBLIC_MOIRA_API } from '$env/static/public';
-import type { HttpMethod, UserInfo, Belonging, ListInfo, ListMembers } from '$lib/types';
+import type {
+	HttpMethod,
+	UserInfo,
+	Belonging,
+	ListInfo,
+	ListMembers,
+	MoiraException,
+	MemberType
+} from '$lib/types';
 
 // TODO: allow other input
 // GET parameters
@@ -85,10 +93,31 @@ export async function getListMembers(ticket: string, list: string): Promise<List
 	});
 }
 
+export async function getAllListMembers(ticket: string, list: string): Promise<ListMembers> {
+	return await makeQuery({
+		method: 'GET',
+		path: `/lists/${list}/members/?recurse=true`,
+		ticket
+	});
+}
+
 export async function getListLists(ticket: string, list: string): Promise<string[]> {
 	return await makeQuery({
 		method: 'GET',
 		path: `/lists/${list}/lists`,
+		ticket
+	});
+}
+
+export async function delUserFromList(
+	ticket: string,
+	list: string,
+	member = 'me',
+	type: MemberType = 'user'
+): Promise<'success' | MoiraException> {
+	return await makeQuery({
+		method: 'DELETE',
+		path: `/lists/${list}/members/${member}?type=${type}`,
 		ticket
 	});
 }
