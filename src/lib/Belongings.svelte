@@ -11,8 +11,6 @@
 	export let error: MoiraException;
 	export let belongings: Belonging[] = [];
 
-	$: console.log(belongings);
-
 	let lists: string[] = [];
 	$: lists = belongings
 		.filter((b) => b.type === 'list')
@@ -41,7 +39,6 @@
 	$: h2 = `h${headingLevel + 1}`;
 
 	$: onlyOwnsLists = belongings.every((b) => b.type === 'list');
-	$: console.log(onlyOwnsLists);
 </script>
 
 {#if onlyOwnsLists}

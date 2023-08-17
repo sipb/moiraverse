@@ -30,14 +30,12 @@ export async function makeQuery({ method, path, ticket, params }: QueryOptions):
 		}
 		param_path = param_path.slice(0, -1);
 	}
-	console.log(`${PUBLIC_MOIRA_API}${path}${param_path}`);
 	const response = await fetch(`${PUBLIC_MOIRA_API}${path}${param_path}`, {
 		headers: {
 			Authorization: `webathena ${ticket}`
 		},
 		method
 	});
-	console.log(response);
 	const json = await response.json();
 	if (response.status !== 200) {
 		// TODO check is instance of MoiraException?

@@ -26,8 +26,6 @@
 	const ticket = derived(webathena, encodeTicket);
 	setContext('ticket', ticket);
 
-	$: console.log($webathena);
-
 	async function login() {
 		$webathena = await loginWebathena();
 	}
