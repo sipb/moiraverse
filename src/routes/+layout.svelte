@@ -3,7 +3,7 @@
 	import { loginWebathena } from '$lib/webathena';
 	import { setContext, onDestroy } from 'svelte';
 	import { writable, derived } from 'svelte/store';
-	import { encodeTicket } from '$lib/webathena';
+	import { encodeTicket, getUsername } from '$lib/webathena';
 	import { persisted } from 'svelte-local-storage-store';
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
@@ -25,6 +25,9 @@
 
 	const ticket = derived(webathena, encodeTicket);
 	setContext('ticket', ticket);
+
+	const username = derived(webathena, getUsername);
+	setContext('username', username);
 
 	$: console.log($webathena);
 

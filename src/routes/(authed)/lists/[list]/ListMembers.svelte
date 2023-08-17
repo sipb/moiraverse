@@ -15,34 +15,31 @@
 	export let listName: string;
 
 	const ticket = getContext<Readable<string>>('ticket');
+	const userKerb = getContext<Readable<string>>('username');
 
-	async function getDeleteData() {
-		let [userInfo, listInfo] = await Promise.all([
-			getUserInfo($ticket),
-			getListInfo($ticket, listName)
-		]);
+	async function canEditMembership() {
+		let listInfo = await getListInfo($ticket, listName);
 		let [ownerInfo, adminInfo] = [listInfo.owner, listInfo.membership_administrator];
 
-		let userKerb = userInfo.kerb;
 		let isUserAdmin = false;
 
 		if (ownerInfo.type == 'list') {
 			let adminMembers = await getAllListMembers($ticket, ownerInfo.name);
-			isUserAdmin = adminMembers.users.includes(userKerb);
+			isUserAdmin = adminMembers.users.includes($userKerb);
 		} else {
-			isUserAdmin = ownerInfo.name == userKerb;
+			isUserAdmin = ownerInfo.name == $userKerb;
 		}
 
 		if (!isUserAdmin && adminInfo) {
 			if (adminInfo.type == 'list') {
 				let adminMembers = await getAllListMembers($ticket, adminInfo.name);
-				isUserAdmin = adminMembers.users.includes(userKerb);
+				isUserAdmin = adminMembers.users.includes($userKerb);
 			} else {
-				isUserAdmin = adminInfo.name == userKerb;
+				isUserAdmin = adminInfo.name == $userKerb;
 			}
 		}
 
-		return { userKerb, isUserAdmin };
+		return isUserAdmin;
 	}
 
 	let refresh = false;
@@ -51,9 +48,9 @@
 <h2>Members</h2>
 
 {#key refresh}
-	{#await Promise.all([getListMembers($ticket, listName), getDeleteData()])}
+	{#await Promise.all([getListMembers($ticket, listName), canEditMembership()])}
 		<Loading />
-	{:then [members, { userKerb, isUserAdmin }]}
+	{:then [members, isUserAdmin]}
 		{#if Object.values(members).filter((array) => array.length > 0).length > 0}
 			<!-- TODO: update API so it can handle everything (like IDs) -->
 			{#if members.users.length > 0}
@@ -69,7 +66,7 @@
 						{user}
 					{/await} -->
 							{user}
-							{#if user == userKerb || isUserAdmin}
+							{#if user == $userKerb || isUserAdmin}
 								<button
 									type="button"
 									class="btn btn-danger"
