@@ -67,3 +67,18 @@ export type ListMembers = {
 };
 
 export type MemberType = 'user' | 'email' | 'list' | 'kerberos';
+
+export type Finger = {
+	affiliation: string;
+	department: string;
+	fullname: string;
+	home_addr: string;
+	home_phone: string;
+	login: string;
+	modby: string;
+	modtime: string;
+	modwith: string;
+	nickname: string;
+	office_addr: string;
+	office_phone: string;
+};
