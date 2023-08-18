@@ -41,6 +41,15 @@ export async function makeQuery({ method, path, ticket }: QueryOptions): Promise
 	return json;
 }
 
+export async function isTicketExpired(ticket: string): Promise<boolean> {
+	const result = await makeQuery({
+		method: 'GET',
+		path: '/status',
+		ticket
+	});
+	return result.status === 'expired';
+}
+
 export async function getLists(ticket: string): Promise<string[]> {
 	const lists: string[] = await makeQuery({
 		method: 'GET',
