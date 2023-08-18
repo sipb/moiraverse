@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
 	import Loading from '$lib/Loading.svelte';
-	import { getUserInfo } from '$lib/moira';
+	import { getUserInfo, klist } from '$lib/moira';
 	import type { Readable } from 'svelte/store';
 	import Error from '$lib/Error.svelte';
 
@@ -25,4 +25,16 @@
 	</dl>
 {:catch error}
 	<Error {error} />
+{/await}
+
+{#await klist($ticket) then tickets}
+	<details>
+		<summary>Show <code>klist</code> output</summary>
+
+		<pre>
+			<code>
+{tickets}
+			</code>
+		</pre>
+	</details>
 {/await}

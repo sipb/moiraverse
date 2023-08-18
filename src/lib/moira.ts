@@ -9,6 +9,16 @@ import type {
 	MemberType
 } from '$lib/types';
 
+
+export async function klist(ticket: string) {
+	const response = await fetch(`${PUBLIC_MOIRA_API}/klist`, {
+		headers: {
+			Authorization: `webathena ${ticket}`
+		},
+	});
+	return await response.text();
+}
+
 // TODO: allow other input
 // GET parameters
 // and JSON body
