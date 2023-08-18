@@ -12,9 +12,9 @@
 	let ticketExpired: boolean = false;
 
 	afterNavigate(async (navigation) => {
-		if (await isTicketExpired($ticket)) {
+		ticketExpired = await isTicketExpired($ticket);
+		if (ticketExpired) {
 			$webathena = null;
-			ticketExpired = true;
 		}
 	});
 </script>
