@@ -12,7 +12,6 @@
 	let ticketExpired: boolean = false;
 
 	afterNavigate(async (navigation) => {
-		console.log('afterNavigate', navigation, 'called');
 		if (await isTicketExpired($ticket)) {
 			$webathena = null;
 			ticketExpired = true;

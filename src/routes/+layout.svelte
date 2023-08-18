@@ -29,8 +29,6 @@
 	const username = derived(webathena, getUsername);
 	setContext('username', username);
 
-	$: console.log($webathena);
-
 	async function login() {
 		$webathena = await loginWebathena();
 	}

@@ -32,7 +32,6 @@ export async function makeQuery({ method, path, ticket }: QueryOptions): Promise
 		},
 		method
 	});
-	console.log(response);
 	const json = await response.json();
 	if (response.status !== 200) {
 		// TODO check is instance of MoiraException?
