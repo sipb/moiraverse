@@ -10,6 +10,15 @@ import type {
 	Finger
 } from '$lib/types';
 
+export async function klist(ticket: string) {
+	const response = await fetch(`${PUBLIC_MOIRA_API}/klist`, {
+		headers: {
+			Authorization: `webathena ${ticket}`
+		}
+	});
+	return await response.text();
+}
+
 // TODO: allow other input
 // GET parameters
 // and JSON body
@@ -56,6 +65,15 @@ function makeParamsList(args: Map<string, string | boolean | number | undefined>
 		}
 	}
 	return parameterMap;
+}
+
+export async function isTicketExpired(ticket: string): Promise<boolean> {
+	const result = await makeQuery({
+		method: 'GET',
+		path: '/status',
+		ticket
+	});
+	return result.status === 'expired';
 }
 
 export async function testAuthentication(ticket: string): Promise<string[]> {
