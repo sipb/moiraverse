@@ -59,12 +59,12 @@
 					{#each members.users as user}
 						<li class="list-group-item d-flex justify-content-between align-items-center">
 							<!-- {#await getUserInfo($ticket, user)}
-						{user}
-					{:then userInfo}
-						{userInfo.full_name} ({user})
-					{:catch}
-						{user}
-					{/await} -->
+								{user}
+							{:then userInfo}
+								{userInfo.full_name} ({user})
+							{:catch}
+								{user}
+							{/await} -->
 							{user}
 							{#if user == $userKerb || isUserAdmin}
 								<button
