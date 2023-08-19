@@ -29,8 +29,6 @@
 	const username = derived(webathena, getUsername);
 	setContext('username', username);
 
-	$: console.log($webathena);
-
 	async function login() {
 		$webathena = await loginWebathena();
 	}
@@ -161,7 +159,7 @@
 				<iframe
 					title="List Creator"
 					class="w-100 h-100 p-0 m-0"
-					src="https://listmaker.mit.edu/lc"
+					src="https://listmaker.mit.edu/lc/moira"
 				/>
 			</div>
 		</div>
