@@ -18,15 +18,33 @@
 		{ path: `${base}/me`, name: 'About me', icon: 'person' }
 	];
 
-	// TODO: sensible behavior when ticket expires
+	const MOIRA_SESSION_INDEX = 0;
+	const LDAP_SESSION_INDEX = 1;
 
+	// Now this is the raw result from webathena, which contains a
+	// `status` and `session` (formerly) or `sessions` (now)
 	const webathena = persisted<any>('webathena', null);
 	setContext('webathena', webathena);
 
-	const ticket = derived(webathena, encodeTicket);
-	setContext('ticket', ticket);
+	// TODO: make helper to extract the correct session
+	// we may not always want a WIN.MIT.EDU ticket so it should handle the other case too
 
-	const username = derived(webathena, getUsername);
+	const moiraTicket = derived(webathena, (r) => {
+		if (!r) return null;
+		return encodeTicket(r.sessions[MOIRA_SESSION_INDEX]);
+	});
+	setContext('ticket', moiraTicket);
+
+	const ldapTicket = derived(webathena, (r) => {
+		if (!r) return null;
+		return encodeTicket(r.sessions[LDAP_SESSION_INDEX]);
+	});
+	setContext('ticketLDAP', ldapTicket);
+
+	const username = derived(webathena, (r) => {
+		if (!r) return null;
+		return getUsername(r.sessions[0]);
+	});
 	setContext('username', username);
 
 	async function login() {

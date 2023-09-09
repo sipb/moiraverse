@@ -1,8 +1,6 @@
 import WinChan from 'winchan';
 
 const webathena_host = 'https://webathena.mit.edu';
-const realm = 'ATHENA.MIT.EDU';
-const principal = ['moira', 'moira7.mit.edu'];
 
 /**
  * Logs in with WebAthena.
@@ -21,7 +19,27 @@ export function loginWebathena(): Promise<any> {
 		{
 			url: `${webathena_host}/#!request_ticket_v1`,
 			relay_url: `${webathena_host}/relay.html`,
-			params: { realm, principal }
+			params: { 
+				services: [
+					{
+						'principal': ['moira', 'moira7.mit.edu'],
+						'realm': 'ATHENA.MIT.EDU'
+					},
+					
+					// WebAthena doesn't like cross-realm stuff
+					// {
+					// 	'principal': ['ldap', 'w92dc1.win.mit.edu'],
+					// 	'realm': 'WIN.MIT.EDU',
+					// },
+
+					// So we can do this which is on the correct realm (?)
+					// (from `klist` when querying LDAP)
+					{
+						'principal': ['krbtgt', 'WIN.MIT.EDU'],
+						'realm': 'ATHENA.MIT.EDU',
+					},
+				]
+			}
 		},
 		function (err: any, r: any) {
 			if (err) {
@@ -29,7 +47,7 @@ export function loginWebathena(): Promise<any> {
 			} else if (r.status !== 'OK') {
 				reject(err);
 			} else {
-				resolve(r.session);
+				resolve(r);
 			}
 		}
 	);
