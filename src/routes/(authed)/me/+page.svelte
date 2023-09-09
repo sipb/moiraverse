@@ -6,6 +6,7 @@
 	import Error from '$lib/Error.svelte';
 
 	const ticket = getContext<Readable<string>>('ticket');
+	const ldapTicket = getContext<Readable<string>>('ticketLDAP');
 </script>
 
 <h1>My info</h1>
@@ -30,6 +31,18 @@
 {#await klist($ticket) then tickets}
 	<details>
 		<summary>Show <code>klist</code> output</summary>
+
+		<pre>
+			<code>
+{tickets}
+			</code>
+		</pre>
+	</details>
+{/await}
+
+{#await klist($ldapTicket) then tickets}
+	<details>
+		<summary>Show <code>klist</code> output but for LDAP</summary>
 
 		<pre>
 			<code>

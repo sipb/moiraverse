@@ -6,7 +6,10 @@
 		getUserInfo,
 		delUserFromList,
 		getListInfo,
-		getAllListMembers
+		getAllListMembers,
+
+		getUserDisplayName
+
 	} from '$lib/moira';
 	import type { Readable } from 'svelte/store';
 	import Error from '$lib/Error.svelte';
@@ -15,6 +18,7 @@
 	export let listName: string;
 
 	const ticket = getContext<Readable<string>>('ticket');
+	const ldapTicket = getContext<Readable<string>>('ticketLDAP');
 	const userKerb = getContext<Readable<string>>('username');
 
 	async function canEditMembership() {
@@ -58,14 +62,13 @@
 				<ul class="list-group">
 					{#each members.users as user}
 						<li class="list-group-item d-flex justify-content-between align-items-center">
-							<!-- {#await getUserInfo($ticket, user)}
+							{#await getUserDisplayName($ldapTicket, user)}
 								{user}
 							{:then userInfo}
-								{userInfo.full_name} ({user})
+								{userInfo.name} ({user})
 							{:catch}
 								{user}
-							{/await} -->
-							{user}
+							{/await}
 							{#if user == $userKerb || isUserAdmin}
 								<button
 									type="button"

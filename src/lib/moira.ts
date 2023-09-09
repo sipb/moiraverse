@@ -100,6 +100,14 @@ export async function getUserInfo(ticket: string, user = 'me'): Promise<UserInfo
 	});
 }
 
+export async function getUserDisplayName(ticket: string, user = 'me'): Promise<{name: string}> {
+	return await makeQuery({
+		method: 'GET',
+		path: `/users/${user}/name`,
+		ticket
+	});
+}
+
 export async function getUserBelongings(
 	ticket: string,
 	user = 'me',
