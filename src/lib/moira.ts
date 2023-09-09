@@ -7,7 +7,8 @@ import type {
 	ListMembers,
 	MoiraException,
 	MemberType,
-	Finger
+	Finger,
+	StringMap
 } from '$lib/types';
 
 export async function klist(ticket: string) {
@@ -101,9 +102,19 @@ export async function getUserInfo(ticket: string, user = 'me'): Promise<UserInfo
 }
 
 export async function getUserDisplayName(ticket: string, user = 'me'): Promise<{name: string}> {
+	console.log('querying display name for ', user);
 	return await makeQuery({
 		method: 'GET',
 		path: `/users/${user}/name`,
+		ticket
+	});
+}
+
+// Returns a mapping from kerbs to display names
+export async function getListDisplayNames(ticket: string, list: string): Promise<StringMap> {
+	return await makeQuery({
+		method: 'GET',
+		path: `/lists/${list}/names`,
 		ticket
 	});
 }

@@ -7,9 +7,8 @@
 		delUserFromList,
 		getListInfo,
 		getAllListMembers,
-
-		getUserDisplayName
-
+		getUserDisplayName,
+		getListDisplayNames
 	} from '$lib/moira';
 	import type { Readable } from 'svelte/store';
 	import Error from '$lib/Error.svelte';
@@ -46,6 +45,14 @@
 		return isUserAdmin;
 	}
 
+	let displayNamesPromise = getListDisplayNames($ldapTicket, listName);
+
+	async function getDisplayName(ticket: string, user: string): Promise<string> {
+		const mapping = await displayNamesPromise;
+		console.log(mapping);
+		return mapping[user] ?? await getUserDisplayName(ticket, user);
+	}
+
 	let refresh = false;
 </script>
 
@@ -62,10 +69,10 @@
 				<ul class="list-group">
 					{#each members.users as user}
 						<li class="list-group-item d-flex justify-content-between align-items-center">
-							{#await getUserDisplayName($ldapTicket, user)}
+							{#await getDisplayName($ldapTicket, user)}
 								{user}
-							{:then userInfo}
-								{userInfo.name} ({user})
+							{:then name}
+								{name} ({user})
 							{:catch}
 								{user}
 							{/await}

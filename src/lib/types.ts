@@ -82,3 +82,6 @@ export type Finger = {
 	office_addr: string;
 	office_phone: string;
 };
+
+// https://stackoverflow.com/questions/13315131/enforcing-the-type-of-the-indexed-members-of-a-typescript-object
+export interface StringMap { [key: string]: string; }
