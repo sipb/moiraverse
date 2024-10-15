@@ -11,7 +11,7 @@ There is currently a backend running on `uplink.mit.edu`, but it will move to `m
 In order to run this project, create a file called `.env` with the following contents:
 
 ```
-PUBLIC_MOIRA_API="https://uplink.mit.edu"
+PUBLIC_MOIRA_API="https://moira-api.mit.edu"
 ```
 
 Or use `http://localhost:5000` if you are running or developing the REST API locally.
